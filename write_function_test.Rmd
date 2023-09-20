@@ -1,0 +1,83 @@
+---
+title: ""
+output: html_document
+date: "2023-09-20"
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+# library(xlsx)
+# library(readxl)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+>Write a function xls_columnaverage(file, columnname) that takes as input arguments: the name of
+an Excel file and the name of a column of interest. Assume that the first row of the Excel file
+contains the field names (describing what each column contains), and the remaining rows contain
+numerical data. Your function should load the data contained in the Excel file and calculate the
+average of the column whose name is contained in columnname. The column average should be returned
+from the function. Your function should work when it is called with any Exccel file and column name,
+assuming the Excel file satisfies the constraints described above.
+To test your function, create two example Excel files called sample1.xlsx and sample2.xlsx. Add mock
+patient information to these Excel files. Make sample2 columns be in different order than sample1.
+Include columns representing name, age, height, and weight. Add several rows of example patients to
+each of these files.
+Test your function (in Matlab command window – or adapt these test case codes to your programming
+language) with the following test cases:
+>> xls_columnaverage('sample1.xlsx','age')
+>> xls_columnaverage('sample2.xlsx','weight')
+Double-check the answers from your function and make sure they match with what you get from manual
+calculations of the data.
+
+### Make the Excel Files
+
+Tried to make in Excel, but Excel's random number generator changes things every time you change something on the sheet
+
+```{r}
+# set.seed(1)
+# tibble(sample_id = paste0('ID', round(runif(10, min = 100, max = 999))),
+#        age = round(runif(10, min = 20, max = 80)),
+#        weight = round(runif(10, min = 120, max = 300)),
+#        height = round(runif(10, min = 60, max = 75))) -> sim_data
+
+### save randomly generated data for this exercise
+# data in one order for sample1
+# sim_data %>%
+#   as.data.frame() %>%
+#   xlsx::write.xlsx(file = "sample1.xlsx", sheetName = "Sheet1", row.names = F)
+# data in another order for sample2
+# sim_data %>%
+#   select(sample_id, weight, age, height) %>%
+#   as.data.frame() %>%
+#   xlsx::write.xlsx(file = "sample2.xlsx", sheetName = "Sheet1", row.names = F)
+```
+
+<br>
+
+### Write the R function
+
+```{r}
+xls_columnaverage <- function(file, columnname) {
+  readxl::read_excel(file) %>%
+    dplyr::summarize(mean({{columnname}})) %>% 
+    deframe() -> average
+  return(average)
+}
+```
+
+#### Run the summary
+
+```{r}
+xls_columnaverage('sample1.xlsx', age) # 53.6
+
+xls_columnaverage('sample2.xlsx', weight) # 195.3
+```
+
+
+
+
+
+<br><br>
