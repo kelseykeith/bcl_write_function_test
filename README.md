@@ -17,8 +17,10 @@ Include columns representing name, age, height, and weight. Add several rows of 
 each of these files.
 Test your function (in Matlab command window – or adapt these test case codes to your programming
 language) with the following test cases:
->> xls_columnaverage('sample1.xlsx','age')
->> xls_columnaverage('sample2.xlsx','weight')
+
+- `xls_columnaverage('sample1.xlsx','age')`
+- `xls_columnaverage('sample2.xlsx','weight')`
+
 Double-check the answers from your function and make sure they match with what you get from manual
 calculations of the data.
 
