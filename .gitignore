@@ -1,0 +1,3 @@
+# files to ignore
+hs_err_pid65169.log
+.DS_Store
