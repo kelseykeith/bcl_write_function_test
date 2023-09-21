@@ -32,3 +32,4 @@ Example Excel files `sample1.xlsx` and `sample2.xlsx` were randomly generated in
 
 - For `R`, see `write_function_test.Rmd`
 - For `python`, see `write_function_test.py`
+- For `MatLab`, see `write_function_test.mlx`
